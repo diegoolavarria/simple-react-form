@@ -90,7 +90,7 @@ export default class Field extends React.Component {
   renderComponent(info) {
     const Component = this.getComponent()
     const props = this.getChildProps(info)
-    const ref = Component.prototype.render ? {ref: input => (this.input = input)} : {}
+    const ref = get(Component, 'prototypes.render') ? {ref: input => (this.input = input)} : {}
     return (
       <ValueContext.Provider value={props.value}>
         <Component {...ref} {...props} />
